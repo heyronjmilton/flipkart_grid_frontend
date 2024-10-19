@@ -45,7 +45,7 @@ function populateItemList(items) {
 
 
 function startCamera() {
-    const video = document.getElementById('cameraFeed');
+    const video = document.getElementById('previewFeed'); // Get the preview feed video element
 
     // Request access to the camera with preference for the rear camera on mobile devices
     const constraints = {
@@ -59,23 +59,22 @@ function startCamera() {
     navigator.mediaDevices.getUserMedia(constraints)
         .then(stream => {
             // Set the video source to the camera stream
-            video.srcObject = stream;
-            // Hide the modal after allowing access
+            video.srcObject = stream;  // Display the camera feed in the preview feed
+            // Hide the modal after allowing access (optional if using a modal)
             document.getElementById('cameraModal').style.display = 'none';
-            sendFeedToServer(video);
+            sendFeedToServer(video);  // Sends the feed to the server via WebSocket
         })
         .catch(error => {
             console.error('Error accessing camera: ', error);
-            // If there's an error, attempt to access the default camera
+            // Fallback to default camera if error
             const fallbackConstraints = { video: true }; // Default camera
             navigator.mediaDevices.getUserMedia(fallbackConstraints)
                 .then(stream => {
-                    video.srcObject = stream;
+                    video.srcObject = stream;  // Display fallback camera feed in the preview
                     document.getElementById('cameraModal').style.display = 'none';
                 })
                 .catch(fallbackError => {
                     console.error('Error accessing default camera: ', fallbackError);
-                    // Handle errors here (e.g., show an alert)
                 });
         });
 }
