@@ -91,7 +91,7 @@ async function sendFeedToServer(video) {
     const context = canvas.getContext('2d');
     
     // Connect to the WebSocket
-    websocket = new WebSocket('ws://localhost:8000/ws/camera_feed');
+    websocket = new WebSocket('wss://f24b-49-47-196-248.ngrok-free.app/ws/camera_feed');
     
     websocket.onopen = () => {
         setInterval(() => {

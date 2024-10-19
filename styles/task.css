@@ -38,6 +38,7 @@ body {
 .container {
     flex: 1; /* Take up all remaining space after the navbar */
     display: flex;
+    flex-direction: row; /* Align items in a row */
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -48,7 +49,7 @@ body {
 
 /* Large rectangle on the left */
 .large-rectangle {
-    width: 65%; /* Increased to utilize more screen space */
+    flex: 1; /* Take up remaining space */
     height: 80%; /* Relative height to fill most of the vertical space */
     background-color: #4a4e56;
     border: 1px solid #666;
@@ -62,7 +63,6 @@ body {
     object-fit: cover; /* Cover the area without distortion */
     border-radius: 8px; /* Match the border radius of the rectangle */
 }
-
 
 .camera-preview-overlay {
     position: absolute;
@@ -95,7 +95,6 @@ body {
     object-fit: cover;
     border-radius: 8px;
 }
-
 
 /* Right section (contains smaller rectangle and button) */
 .right-section {
@@ -141,7 +140,6 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-
 /* List styling */
 .item-list {
     list-style-type: none; /* Remove default list styling */
@@ -181,9 +179,6 @@ body {
 .item-qty {
     color: #aaa; /* Lighter color for quantity */
 }
-
-
-
 
 /* Modal styling */
 .modal {
@@ -238,3 +233,20 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Responsive styles */
+@media (max-width: 768px) {
+    /* Stack layout on smaller screens */
+    .container {
+        flex-direction: column; /* Stack items vertically */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .large-rectangle, .right-section {
+        width: 100%; /* Full width for both sections */
+        height: auto; /* Height can be auto to allow content to flow */
+    }
+
+    .right-section {
+        margin-top: 20px; /* Add space between sections */
+    }
+}
