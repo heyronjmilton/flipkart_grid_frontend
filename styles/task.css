@@ -1,0 +1,240 @@
+/* General body styling */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #2d2f33;
+    color: white;
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column; /* Align navbar at the top */
+    justify-content: flex-start;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #1f1f1f;
+    padding: 10px 0; /* Minimal padding */
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.navbar a {
+    color: #f0f0f0;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Main container for content */
+.container {
+    flex: 1; /* Take up all remaining space after the navbar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px; /* Minimal padding around content */
+    background-color: #3b3e44;
+    box-sizing: border-box; /* Ensure padding doesn’t overflow */
+}
+
+/* Large rectangle on the left */
+.large-rectangle {
+    width: 65%; /* Increased to utilize more screen space */
+    height: 80%; /* Relative height to fill most of the vertical space */
+    background-color: #4a4e56;
+    border: 1px solid #666;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.video-feed {
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    object-fit: cover; /* Cover the area without distortion */
+    border-radius: 8px; /* Match the border radius of the rectangle */
+}
+
+
+.camera-preview-overlay {
+    position: absolute;
+    top: 20px;  /* Initial position */
+    left: 20px;
+    width: 150px;
+    height: 100px;
+    border: 2px solid #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    cursor: grab; /* Show dragging cursor */
+}
+
+.resize-handle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #ccc;
+    bottom: 0;
+    right: 0;
+    cursor: se-resize; /* Diagonal resizing cursor */
+}
+
+.preview-feed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+/* Right section (contains smaller rectangle and button) */
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%; /* Smaller width compared to the left rectangle */
+    height: 80%; /* Ensure it matches the large rectangle's height */
+}
+
+/* Small rectangle on the right */
+.small-rectangle {
+    width: 90%;
+    height: 70%;
+    background-color: #4a4e56;
+    border: 1px solid #666;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Finish button under the small rectangle */
+.finish-button {
+    width: 100px;
+    height: 40px;
+    background-color: #1f8ef1;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.finish-button:hover {
+    background-color: #1a7cd8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+/* List styling */
+.item-list {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+/* Item styling */
+.item {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center items vertically */
+    padding: 10px; /* Space around items */
+    border-bottom: 1px solid #666; /* Divider between items */
+}
+
+/* Image styling */
+.item-image {
+    width: 40px; /* Set width of the image */
+    height: 40px; /* Set height of the image */
+    margin-right: 10px; /* Space between image and text */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Item details styling */
+.item-details {
+    display: flex;
+    flex-direction: row; /* Stack name and quantity */
+    gap: 10px;
+}
+
+/* Item name styling */
+.item-name {
+    font-weight: bold; /* Bold for item name */
+}
+
+/* Item quantity styling */
+.item-qty {
+    color: #aaa; /* Lighter color for quantity */
+}
+
+
+
+
+/* Modal styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* Modal content styling */
+.modal-content {
+    background-color: #4a4e56; /* Match the large rectangle color */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px; /* Adjust width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal header styling */
+.modal-content h2 {
+    color: #f0f0f0; /* White color for heading */
+}
+
+/* Modal text styling */
+.modal-content p {
+    color: #f0f0f0; /* White color for paragraph */
+}
+
+/* Button styling for modal */
+.modal-content button {
+    background-color: #1f8ef1; /* Button background color */
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    margin: 10px; /* Space between buttons */
+    transition: all 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #1a7cd8; /* Darker shade on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+

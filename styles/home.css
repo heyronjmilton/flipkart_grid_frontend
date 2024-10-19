@@ -1,0 +1,92 @@
+/* General body styling */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #2d2f33;
+    color: white;
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column; /* Align navbar at the top */
+    justify-content: flex-start;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #1f1f1f;
+    padding: 10px 0; /* Minimal padding */
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.navbar a {
+    color: #f0f0f0;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Main container for content */
+.container {
+    flex: 1; /* Take up all remaining space after the navbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0; /* Minimal padding around content */
+    background-color: #3b3e44;
+    box-sizing: border-box; /* Ensure padding doesn’t overflow */
+}
+
+/* Center content for alignment */
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Large rectangle */
+.rectangle {
+    width: 50%; /* Slightly increased to utilize more screen space */
+    height: 75%; /* Height increased for full-screen utilization */
+    background-color: #4a4e56;
+    border: 1px solid #666;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    margin-right: 10px; /* Close to the button */
+}
+
+/* Start button */
+.start-button {
+    width: 120px;
+    height: 50px;
+    background-color: #1f8ef1;
+    border: none;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px; /* Keeps it close to the rectangle */
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.start-button:hover {
+    background-color: #1a7cd8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
