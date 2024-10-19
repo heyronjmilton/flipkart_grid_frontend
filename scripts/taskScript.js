@@ -116,6 +116,13 @@ async function sendFeedToServer(video) {
     websocket.onclose = () => {
         console.log('WebSocket connection closed');
     };
+
+    websocket.onmessage = (event) => {
+        // Set the source of the img element to the received image
+        const imageFeed = document.getElementById('cameraFeed');
+        imageFeed.src = event.data; // Set the source to the received image
+    };
+
 }
 
 
