@@ -5,7 +5,8 @@ let objectwebsocket;
 
 let items = [];
 
-const host = "2d8e-49-47-196-248.ngrok-free.app"
+
+const host = "f6d2-49-47-196-248.ngrok-free.app"
 
 
 // Function to populate the item list
@@ -23,9 +24,10 @@ function populateItemList(items) {
         `  
             <div class="item-details">
                 <span class="item-number">${index + 1}.</span> 
-                <span class="item-name">${item.name}</span>
-                ${item.type === 'packaged' ? `<span class="item-mfg">EXP: ${item.exp}</span>` : ''}
-                ${item.type === 'fruit' ? `<span class="item-quality">Quality: ${item.quality}</span>` : ''}
+                <span class="item-name">${item.object_name}</span>
+                <span class="item-mfg">EXP: ${item.expiry}</span>
+                <span class="item-mfg">MFG: ${item.mfg}</span>
+                <span class="item-mfg">Batch No: ${item.batch_no}</span>
             </div>
         `;
 
@@ -82,8 +84,8 @@ async function sendFeedToServer(video) {
     const context = canvas.getContext('2d');
     
     // Connect to the WebSocket
-    feedwebsocket = new WebSocket(`ws://${host}/ws/camera_feed_object`);
-    objectwebsocket = new WebSocket(`ws://${host}/ws/objects`);
+    feedwebsocket = new WebSocket(`wss://${host}/ws/camera_feed_expiry`);
+    objectwebsocket = new WebSocket(`wss://${host}/ws/expiry`);
     
     feedwebsocket.onopen = () => {
         setInterval(() => {
