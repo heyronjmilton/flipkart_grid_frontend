@@ -6,7 +6,7 @@ let objectwebsocket;
 let items = [];
 
 
-const host = "f6d2-49-47-196-248.ngrok-free.app"
+const host = "0f01-103-184-239-7.ngrok-free.app"
 
 
 // Function to populate the item list
@@ -186,8 +186,13 @@ function finishTask() {
         console.log('WebSocket connection closed.');
     }
 
+    if(objectwebsocket){
+        feedwebsocket.close();
+        console.log('WebSocket connection closed.');
+    }
+
     // Navigate to another page (change "completion.html" to your target page)
-    window.location.href = 'completion.html'; 
+     
 }
 
 

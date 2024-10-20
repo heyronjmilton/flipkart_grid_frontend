@@ -5,7 +5,7 @@ let objectwebsocket;
 
 let items = [];
 
-const host = "2d8e-49-47-196-248.ngrok-free.app"
+const host = "0b24-103-184-239-7.ngrok-free.app"
 
 // Function to populate the item list
 function populateItemList(items) {
@@ -81,8 +81,8 @@ async function sendFeedToServer(video) {
     const context = canvas.getContext('2d');
     
     // Connect to the WebSocket
-    feedwebsocket = new WebSocket(`ws://${host}/ws/camera_feed_object`);
-    fruitwebsocket = new WebSocket(`ws://${host}/ws/fruits`);
+    feedwebsocket = new WebSocket(`wss://${host}/ws/camera_feed_fruit`);
+    fruitwebsocket = new WebSocket(`wss://${host}/ws/fruits`);
     
     feedwebsocket.onopen = () => {
         setInterval(() => {
@@ -183,8 +183,13 @@ function finishTask() {
         console.log('WebSocket connection closed.');
     }
 
+    if(fruitwebsocket) {
+        fruitwebsocket.close();
+        console.log("websocket connection closed");
+    }
+
     // Navigate to another page (change "completion.html" to your target page)
-    window.location.href = 'completion.html'; 
+    
 }
 
 

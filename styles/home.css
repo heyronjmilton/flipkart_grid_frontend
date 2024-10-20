@@ -44,6 +44,7 @@ body {
     padding: 0; /* Minimal padding around content */
     background-color: #3b3e44;
     box-sizing: border-box; /* Ensure padding doesn’t overflow */
+    gap: 10px;
 }
 
 /* Center content for alignment */
@@ -57,15 +58,28 @@ body {
 
 /* Large rectangle */
 .rectangle {
-    width: 50%; /* Slightly increased to utilize more screen space */
-    height: 75%; /* Height increased for full-screen utilization */
-    background-color: #4a4e56;
-    border: 1px solid #666;
-    border-radius: 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    margin-right: 10px; /* Close to the button */
+    width: 60%; /* Adjust the width for better fit */
+    background-color: #4a4e56; /* Matching the dark theme */
+    color: white; /* Keep the text white for contrast */
+    padding: 20px; /* Add some padding for readability */
+    border-radius: 8px; /* Smooth rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+    text-align: center; /* Center align text */
+    font-size: 18px; /* Adjust font size */
+    line-height: 1.6; /* Improve line spacing */
+    border: 1px solid #666; /* Light border to match the aesthetics */
+    margin-bottom: 10px; /* Space below the rectangle */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+.rectangle strong {
+    color: #1f8ef1; /* Blue color for highlighted text */
+}
+
+.rectangle:hover {
+    background-color: #555a62; /* Slightly darker on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
 
 /* Container for navigation buttons */
 .navigation-buttons {
