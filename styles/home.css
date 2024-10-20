@@ -66,27 +66,32 @@ body {
     margin-right: 10px; /* Close to the button */
 }
 
-/* Start button */
-.start-button {
-    width: 120px;
-    height: 50px;
-    background-color: #1f8ef1;
-    border: none;
-    border-radius: 25px;
+
+/* Container for navigation buttons */
+.navigation-buttons {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px; /* Keeps it close to the rectangle */
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between buttons */
+    align-items: center; /* Center buttons horizontally */
 }
 
+/* Start button styles */
+.start-button {
+    display: block; /* Make the anchor tag act like a button */
+    width: 150px; /* Set a fixed width */
+    padding: 10px; /* Add padding for better touch target */
+    background-color: #1f8ef1; /* Button color */
+    color: white; /* Text color */
+    text-align: center; /* Center text */
+    border-radius: 20px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for buttons */
 .start-button:hover {
-    background-color: #1a7cd8;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background-color: #1a7cd8; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
 }

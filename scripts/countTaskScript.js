@@ -1,47 +1,36 @@
 // script.js
 
-let websocket;
+let feedwebsocket;
+let countwebsocket;
 
-const items = [
-    {
-        "name": "Apple",
-        "qty": 2,
-        "quality": "Fresh", // Quality for fruits
-        "image": "path/to/image1.jpg", // Replace with actual image paths
-        "type": "fruit" // Indicate type
-    },
-    {
-        "name": "Canned Beans",
-        "qty": 5,
-        "exp": "2025-01-15", // Expiration date for packaged items
-        "image": "path/to/image2.jpg", // Replace with actual image paths
-        "type": "packaged" // Indicate type
-    }
-    // Add more items as needed
-];
+let items = [];
 
-
+const host = "2d8e-49-47-196-248.ngrok-free.app"
 
 // Function to populate the item list
 function populateItemList(items) {
     const itemList = document.querySelector('.item-list');
 
-    items.forEach(item => {
+    // Clear existing items in the list
+    itemList.innerHTML = '';
+
+    items.forEach((item, index) => {
         const li = document.createElement('li');
         li.className = 'item';
 
-        li.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="item-image">
+        li.innerHTML = 
+        `  
             <div class="item-details">
-                <span class="item-name">${item.name}</span>
-                ${item.type === 'packaged' ? `<span class="item-mfg">EXP: ${item.exp}</span>` : ''}
-                ${item.type === 'fruit' ? `<span class="item-quality">Quality: ${item.quality}</span>` : ''}
+                <span class="item-number">${index + 1}.</span> 
+                <span class="item-name">${item.object}</span>
+            <span class="item-mfg">Track ID: ${item.track_id}</span> 
             </div>
         `;
 
         itemList.appendChild(li);
     });
 }
+
 
 
 function startCamera() {
@@ -91,9 +80,10 @@ async function sendFeedToServer(video) {
     const context = canvas.getContext('2d');
     
     // Connect to the WebSocket
-    websocket = new WebSocket('wss://f24b-49-47-196-248.ngrok-free.app/ws/camera_feed');
+    feedwebsocket = new WebSocket(`wss://${host}/ws/camera_feed_count`);
+    countwebsocket = new WebSocket(`wss://${host}/ws/count`);
     
-    websocket.onopen = () => {
+    feedwebsocket.onopen = () => {
         setInterval(() => {
             if (video.readyState === 4 && video.videoWidth && video.videoHeight) {
                 canvas.width = video.videoWidth;
@@ -102,26 +92,40 @@ async function sendFeedToServer(video) {
                 const imageData = canvas.toDataURL('image/jpeg'); // Capture frame as JPEG
 
                 // Send the image data to the WebSocket server
-                if (websocket.readyState === WebSocket.OPEN) {
-                    websocket.send(imageData);
+                if (feedwebsocket.readyState === WebSocket.OPEN) {
+                    feedwebsocket.send(imageData);
                 }
             }
-        }, 100); // Capture and send every second
+        }, 100); // Capture and send at a delay
     };
 
-    websocket.onerror = (error) => {
-        console.error('WebSocket error:', error);
+    feedwebsocket.onerror = (error) => {
+        console.error('feed WebSocket error:', error);
     };
     
-    websocket.onclose = () => {
-        console.log('WebSocket connection closed');
+    feedwebsocket.onclose = () => {
+        console.log('feed WebSocket connection closed');
     };
 
-    websocket.onmessage = (event) => {
+    feedwebsocket.onmessage = (event) => {
         // Set the source of the img element to the received image
         const imageFeed = document.getElementById('cameraFeed');
         imageFeed.src = event.data; // Set the source to the received image
     };
+
+    countwebsocket.onerror = (error) => {
+        console.log("object socket error", error)
+    }
+
+    countwebsocket.onclose = () => {
+        console.log("object socket closed");
+    }
+
+    countwebsocket.onmessage = (event) => {
+        console.log("items data :",event.data);
+        items = JSON.parse(event.data);
+        populateItemList(items);
+    }
 
 }
 
@@ -169,6 +173,19 @@ function makeDraggableAndResizable() {
         event.preventDefault(); // Prevent text selection during resizing
     });
 }
+
+
+function finishTask() {
+    // Close the WebSocket connection
+    if (feedwebsocket) {
+        feedwebsocket.close();
+        console.log('WebSocket connection closed.');
+    }
+
+    // Navigate to another page (change "completion.html" to your target page)
+    window.location.href = 'completion.html'; 
+}
+
 
 
 // Event listeners for modal buttons

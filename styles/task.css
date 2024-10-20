@@ -114,6 +114,7 @@ body {
     border: 1px solid #666;
     border-radius: 8px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 /* Finish button under the small rectangle */
@@ -147,6 +148,27 @@ body {
     margin: 0; /* Remove margin */
 }
 
+.item-list-heading {
+    margin: 10px 0; /* Space around the heading */
+    color: #f0f0f0; /* Color to match your design */
+    text-align: center; /* Center the heading */
+    font-size: 18px; /* Font size */
+    font-weight: 600; /* Font weight */
+}
+
+.item-list::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.item-list::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar */
+    border-radius: 10px; /* Rounded scrollbar */
+}
+
+.item-list::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color on hover */
+}
+
 /* Item styling */
 .item {
     display: flex; /* Align items horizontally */
@@ -166,13 +188,18 @@ body {
 /* Item details styling */
 .item-details {
     display: flex;
-    flex-direction: row; /* Stack name and quantity */
+    flex-direction: row;
     gap: 10px;
+    align-items: flex-start; /* Align text neatly at the top */
+    flex-wrap: wrap; /* Allow content to wrap in case of long text */
 }
 
 /* Item name styling */
 .item-name {
-    font-weight: bold; /* Bold for item name */
+    font-weight: bold;
+    color: #fff;
+    white-space: normal; /* Allow the text to wrap onto multiple lines */
+    word-wrap: break-word; /* Break long words that exceed the width */
 }
 
 /* Item quantity styling */
