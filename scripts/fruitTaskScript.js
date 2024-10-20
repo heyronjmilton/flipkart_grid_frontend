@@ -5,7 +5,7 @@ let objectwebsocket;
 
 let items = [];
 
-const host = "0b24-103-184-239-7.ngrok-free.app"
+const host = "<link to backend here>"
 
 // Function to populate the item list
 function populateItemList(items) {
