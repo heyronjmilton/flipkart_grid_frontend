@@ -226,13 +226,13 @@ async function sendFeedToServer(video) {
             const count = data['count'];
             // console.log("COUNT:", count);
             populateItemList(data['details']);
-            if(data['product_name'] != null)
+            if(data['product_name'] != null && beepflag == true)
             {
-
                 playBeep();
                 playBeep();
                 playBeep();
                 playBeep();
+                beepflag = false;
             }
         };
     }
