@@ -5,7 +5,7 @@ let countwebsocket;
 
 let items = [];
 
-const host = "<link to backend here>"
+const host = "backend.angeloantu.online"
 
 // Function to populate the item list
 function populateItemList(items) {
