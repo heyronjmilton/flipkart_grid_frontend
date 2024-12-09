@@ -156,12 +156,13 @@ function playBeep() {
     oscillator.stop(context.currentTime + 0.2);
 }
 
+let beepflag = true;
 async function sendFeedToServer(video) {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
     let feedwebsocket, objectwebsocket;
-    const reconnectInterval = 500; // 500 ms
+    const reconnectInterval = 100; // 500 ms
 
     function connectFeedWebSocket() {
         feedwebsocket = new WebSocket(`wss://${host}/ws/camera_feed_expiry`);
@@ -220,12 +221,19 @@ async function sendFeedToServer(video) {
         objectwebsocket.onmessage = (event) => {
             const data = JSON.parse(event.data);
             // console.log(data['details']);
-            // console.log("Product name:", data['product_name']);
+            console.log("Product name:", data['product_name']);
             // console.log("Name detection:", data['name_detection']);
             const count = data['count'];
             // console.log("COUNT:", count);
             populateItemList(data['details']);
-            playBeep();
+            if(data['product_name'] != null)
+            {
+
+                playBeep();
+                playBeep();
+                playBeep();
+                playBeep();
+            }
         };
     }
 
