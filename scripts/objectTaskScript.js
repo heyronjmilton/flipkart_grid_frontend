@@ -226,7 +226,8 @@ async function sendFeedToServer(video) {
             const count = data['count'];
             // console.log("COUNT:", count);
             populateItemList(data['details']);
-            if(data['product_name'] != null && beepflag == true)
+            console.log(data['name_detection']);
+            if(data['name_detection'] == false && beepflag == true)
             {
                 playBeep();
                 playBeep();
